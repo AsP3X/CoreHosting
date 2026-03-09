@@ -313,7 +313,14 @@
           <section class="detail-tab-panel" id="panelConsole" role="tabpanel" aria-labelledby="tabConsole" hidden>
             <div class="detail-section-header">
               <h2 class="dashboard-section-title">Console</h2>
-              <button type="button" class="detail-clear-btn" id="clearConsole">Clear</button>
+              <div class="detail-console-toolbar">
+                <label class="detail-console-autoscroll">
+                  <input type="checkbox" id="consoleAutoScroll" class="detail-console-autoscroll-input" checked aria-label="Auto scroll console">
+                  <span class="detail-console-autoscroll-slider"></span>
+                  <span class="detail-console-autoscroll-label">Auto scroll</span>
+                </label>
+                <button type="button" class="detail-clear-btn" id="clearConsole">Clear</button>
+              </div>
             </div>
             <div class="detail-console" id="consoleOutput" aria-live="polite" aria-label="Server console output">
             <p><span class="console-ts">[09:14:01]</span> <span class="console-info">Server started on port 25565</span></p>

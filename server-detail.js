@@ -294,6 +294,14 @@
   ];
   let consoleLine = 0;
 
+  function scrollConsoleToBottom() {
+    const output = document.getElementById('consoleOutput');
+    const autoScroll = document.getElementById('consoleAutoScroll');
+    if (output && autoScroll && autoScroll.checked) {
+      output.scrollTop = output.scrollHeight;
+    }
+  }
+
   function appendConsoleLine() {
     const output = document.getElementById('consoleOutput');
     if (!output) return;
@@ -314,7 +322,7 @@
       p.appendChild(document.createTextNode(text));
     }
     output.appendChild(p);
-    output.scrollTop = output.scrollHeight;
+    scrollConsoleToBottom();
     /* Keep max 100 lines */
     while (output.childElementCount > 100) output.removeChild(output.firstElementChild);
   }
@@ -340,7 +348,7 @@
       p.appendChild(msg);
       if (output) {
         output.appendChild(p);
-        output.scrollTop = output.scrollHeight;
+        scrollConsoleToBottom();
       }
       consoleInput.value = '';
     });
@@ -379,7 +387,7 @@
         const ts = new Date().toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
         const p  = document.createElement('p');
         p.innerHTML = `<span class="console-ts">[${ts}]</span> <span class="${cls}">${text}</span>`;
-        if (output) { output.appendChild(p); output.scrollTop = output.scrollHeight; }
+        if (output) { output.appendChild(p); scrollConsoleToBottom(); }
       };
       addLine('console-warn', 'Server restart initiated by John.');
       setTimeout(() => addLine('', 'Stopping server...'), 800);
