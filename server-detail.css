@@ -138,6 +138,69 @@
   font-weight: 700;
 }
 
+/* ---- Tabs ---- */
+.detail-tabs {
+  margin-bottom: 0;
+}
+
+.detail-tab-list {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  padding-bottom: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.detail-tab-btn svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.detail-tab-btn:hover {
+  color: var(--text-secondary);
+}
+
+.detail-tab-btn--active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.detail-tab-btn--active svg {
+  opacity: 1;
+}
+
+.detail-tab-panel {
+  display: none;
+  padding-top: 0;
+}
+
+.detail-tab-panel--active {
+  display: block;
+}
+
+.detail-tab-panel .detail-section-header {
+  margin-bottom: 20px;
+}
+
 /* ---- Section ---- */
 .detail-section {
   margin-bottom: 40px;
@@ -381,6 +444,149 @@
   flex-shrink: 0;
 }
 
+/* ---- File Manager ---- */
+.detail-file-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detail-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.detail-file-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.detail-file-path {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.detail-file-path-label {
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.detail-file-path-value {
+  font-family: ui-monospace, monospace;
+  color: var(--text-secondary);
+  flex: 1;
+  word-break: break-all;
+}
+
+.detail-file-table-wrap {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.detail-file-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.detail-file-table th,
+.detail-file-table td {
+  padding: 12px 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-file-table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  background: var(--bg-surface);
+}
+
+.detail-file-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.detail-file-row {
+  cursor: default;
+  transition: background var(--transition);
+}
+
+.detail-file-row:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.detail-file-row td:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-file-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 4px;
+}
+
+.detail-file-icon--dir {
+  background: rgba(0, 232, 123, 0.2);
+  position: relative;
+}
+
+.detail-file-icon--dir::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 60%, 60% 100%, 0 100%);
+}
+
+.detail-file-icon--file {
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.detail-file-icon--file::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 1px solid var(--text-tertiary);
+  border-radius: 1px;
+}
+
+.detail-file-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+
+.detail-file-action:hover {
+  background: var(--accent-dim);
+  color: var(--accent-hover);
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
   .detail-metrics {
@@ -416,6 +622,15 @@
   .detail-section-header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .detail-tab-list {
+    flex-wrap: wrap;
+  }
+
+  .detail-tab-btn {
+    padding: 10px 14px;
+    font-size: 0.85rem;
   }
 }
 

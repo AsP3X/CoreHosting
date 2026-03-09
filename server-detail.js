@@ -427,6 +427,35 @@
     }, 150);
   });
 
+  /* ---------- TAB SWITCHING ---------- */
+  const tabButtons = document.querySelectorAll('.detail-tab-btn');
+  const panels = document.querySelectorAll('.detail-tab-panel');
+
+  function switchDetailTab(panelId) {
+    tabButtons.forEach(btn => {
+      const isActive = btn.dataset.panel === panelId;
+      btn.classList.toggle('detail-tab-btn--active', isActive);
+      btn.setAttribute('aria-selected', isActive);
+    });
+    panels.forEach(panel => {
+      const isActive = panel.id === panelId;
+      panel.classList.toggle('detail-tab-panel--active', isActive);
+      panel.hidden = !isActive;
+    });
+    /* Resize charts when Performance panel becomes visible so canvas gets correct size */
+    if (panelId === 'panelPerformance') {
+      ['chartCpu', 'chartRam', 'chartStorage', 'chartPlayers'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el._sized = false;
+      });
+      requestAnimationFrame(() => drawAll(null));
+    }
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => switchDetailTab(btn.dataset.panel));
+  });
+
   /* ---------- INIT ---------- */
   function init() {
     buildInitialSeries(currentTf);

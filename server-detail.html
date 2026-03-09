@@ -159,21 +159,37 @@
           </div>
         </div>
 
-        <!-- ===== PERFORMANCE ===== -->
-        <section class="detail-section">
-          <div class="detail-section-header">
-            <h2 class="dashboard-section-title">Performance</h2>
-            <!-- Timeframe selector -->
-            <div class="detail-timeframe" role="group" aria-label="Select timeframe">
-              <button class="detail-tf-btn" data-tf="1h">1H</button>
-              <button class="detail-tf-btn detail-tf-btn--active" data-tf="6h">6H</button>
-              <button class="detail-tf-btn" data-tf="24h">24H</button>
-              <button class="detail-tf-btn" data-tf="7d">7D</button>
-            </div>
+        <!-- ===== TABS: Performance | File Manager | Console ===== -->
+        <div class="detail-tabs" id="detailTabs">
+          <div class="detail-tab-list" role="tablist" aria-label="Server tools">
+            <button type="button" class="detail-tab-btn detail-tab-btn--active" role="tab" id="tabPerformance" aria-selected="true" aria-controls="panelPerformance" data-panel="panelPerformance">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 2 5-6"/></svg>
+              Performance
+            </button>
+            <button type="button" class="detail-tab-btn" role="tab" id="tabFiles" aria-selected="false" aria-controls="panelFiles" data-panel="panelFiles">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
+              File Manager
+            </button>
+            <button type="button" class="detail-tab-btn" role="tab" id="tabConsole" aria-selected="false" aria-controls="panelConsole" data-panel="panelConsole">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg>
+              Console
+            </button>
           </div>
 
-          <!-- Current values -->
-          <div class="detail-metrics">
+          <!-- Panel: Performance -->
+          <section class="detail-tab-panel detail-tab-panel--active" id="panelPerformance" role="tabpanel" aria-labelledby="tabPerformance">
+            <div class="detail-section-header">
+              <h2 class="dashboard-section-title">Performance</h2>
+              <div class="detail-timeframe" role="group" aria-label="Select timeframe">
+                <button class="detail-tf-btn" data-tf="1h">1H</button>
+                <button class="detail-tf-btn detail-tf-btn--active" data-tf="6h">6H</button>
+                <button class="detail-tf-btn" data-tf="24h">24H</button>
+                <button class="detail-tf-btn" data-tf="7d">7D</button>
+              </div>
+            </div>
+
+            <!-- Current values -->
+            <div class="detail-metrics">
             <div class="detail-metric detail-metric--cpu">
               <div class="detail-metric-header">
                 <span class="detail-metric-name">CPU</span>
@@ -231,15 +247,75 @@
               <canvas id="chartPlayers" class="detail-canvas" aria-label="Player count chart"></canvas>
             </div>
           </div>
-        </section>
+          </section>
 
-        <!-- ===== CONSOLE ===== -->
-        <section class="detail-section">
-          <div class="detail-section-header">
-            <h2 class="dashboard-section-title">Console</h2>
-            <button type="button" class="detail-clear-btn" id="clearConsole">Clear</button>
-          </div>
-          <div class="detail-console" id="consoleOutput" aria-live="polite" aria-label="Server console output">
+          <!-- Panel: File Manager -->
+          <section class="detail-tab-panel" id="panelFiles" role="tabpanel" aria-labelledby="tabFiles" hidden>
+            <div class="detail-section-header">
+              <h2 class="dashboard-section-title">File Manager</h2>
+              <div class="detail-file-actions">
+                <button type="button" class="btn btn-ghost detail-file-btn" title="Upload file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg> Upload</button>
+                <button type="button" class="btn btn-ghost detail-file-btn" title="New folder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/></svg> New folder</button>
+                <button type="button" class="btn btn-ghost detail-file-btn" title="Refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg> Refresh</button>
+              </div>
+            </div>
+            <div class="detail-file-path" id="fileManagerPath">
+              <span class="detail-file-path-label">Path:</span>
+              <code class="detail-file-path-value">/</code>
+            </div>
+            <div class="detail-file-table-wrap">
+              <table class="detail-file-table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Modified</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="detail-file-row detail-file-row--dir" data-path="/world">
+                    <td><span class="detail-file-icon detail-file-icon--dir"></span> world</td>
+                    <td>—</td>
+                    <td>Mar 9, 2026 09:14</td>
+                    <td><button type="button" class="detail-file-action" title="Open">Open</button></td>
+                  </tr>
+                  <tr class="detail-file-row detail-file-row--dir" data-path="/plugins">
+                    <td><span class="detail-file-icon detail-file-icon--dir"></span> plugins</td>
+                    <td>—</td>
+                    <td>Mar 8, 2026 12:00</td>
+                    <td><button type="button" class="detail-file-action" title="Open">Open</button></td>
+                  </tr>
+                  <tr class="detail-file-row detail-file-row--dir" data-path="/mods">
+                    <td><span class="detail-file-icon detail-file-icon--dir"></span> mods</td>
+                    <td>—</td>
+                    <td>Mar 7, 2026 18:22</td>
+                    <td><button type="button" class="detail-file-action" title="Open">Open</button></td>
+                  </tr>
+                  <tr class="detail-file-row" data-path="/server.properties">
+                    <td><span class="detail-file-icon detail-file-icon--file"></span> server.properties</td>
+                    <td>2.1 KB</td>
+                    <td>Mar 9, 2026 09:13</td>
+                    <td><button type="button" class="detail-file-action" title="Edit">Edit</button></td>
+                  </tr>
+                  <tr class="detail-file-row" data-path="/eula.txt">
+                    <td><span class="detail-file-icon detail-file-icon--file"></span> eula.txt</td>
+                    <td>256 B</td>
+                    <td>Mar 9, 2026 09:12</td>
+                    <td><button type="button" class="detail-file-action" title="Edit">Edit</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Panel: Console -->
+          <section class="detail-tab-panel" id="panelConsole" role="tabpanel" aria-labelledby="tabConsole" hidden>
+            <div class="detail-section-header">
+              <h2 class="dashboard-section-title">Console</h2>
+              <button type="button" class="detail-clear-btn" id="clearConsole">Clear</button>
+            </div>
+            <div class="detail-console" id="consoleOutput" aria-live="polite" aria-label="Server console output">
             <p><span class="console-ts">[09:14:01]</span> <span class="console-info">Server started on port 25565</span></p>
             <p><span class="console-ts">[09:14:03]</span> Done (2.731s)! For help, type "help"</p>
             <p><span class="console-ts">[09:22:48]</span> <span class="console-join">PlayerOne joined the game</span></p>
@@ -257,7 +333,10 @@
             <input type="text" id="consoleInput" class="detail-console-input" placeholder="Type a command…" aria-label="Console command input">
             <button type="submit" class="btn btn-primary detail-console-send">Send</button>
           </form>
-        </section>
+          </section>
+
+        </div>
+        <!-- end .detail-tabs -->
 
       </div>
     </main>
