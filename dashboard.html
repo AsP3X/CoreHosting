@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — NexusHost</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar dashboard-nav" id="navbar">
+    <div class="nav-inner">
+      <button type="button" class="dashboard-sidebar-toggle" id="sidebarToggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="url(#dashLogoGrad)" />
+            <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="#0f0f13" />
+            <defs>
+              <linearGradient id="dashLogoGrad" x1="4" y1="2" x2="28" y2="30">
+                <stop stop-color="#00e87b" />
+                <stop offset="1" stop-color="#00b4d8" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">NexusHost</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="servers.html" class="nav-link">My Servers</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+        <a href="index.html#pricing" class="nav-link">Prices</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="dashboard-user" id="userMenu">
+          <button class="dashboard-user-btn" id="userMenuBtn" aria-expanded="false" aria-haspopup="true" aria-label="Account menu">
+            <span class="dashboard-user-avatar">JD</span>
+            <span class="dashboard-user-name">John</span>
+            <svg class="dashboard-user-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dashboard-user-dropdown" id="userDropdown" hidden>
+            <a href="dashboard.html" class="dashboard-user-item">Dashboard</a>
+            <a href="settings.html" class="dashboard-user-item">Account settings</a>
+            <a href="billing.html" class="dashboard-user-item">Billing</a>
+            <hr class="dashboard-user-divider">
+            <a href="auth.html" class="dashboard-user-item dashboard-user-item--danger">Sign out</a>
+          </div>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== LAYOUT: SIDEBAR + MAIN ========== -->
+  <div class="dashboard-layout">
+    <div class="dashboard-sidebar-overlay" id="sidebarOverlay" aria-hidden="true" hidden></div>
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar" id="sidebar">
+      <nav class="dashboard-sidebar-nav" aria-label="Dashboard navigation">
+        <a href="dashboard.html" class="dashboard-sidebar-link dashboard-sidebar-link--active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Overview
+        </a>
+        <a href="servers.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg>
+          My Servers
+        </a>
+        <a href="billing.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Billing
+        </a>
+        <a href="settings.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009.19 18a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 006 9.19a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+      <div class="dashboard-sidebar-footer">
+        <a href="index.html" class="dashboard-sidebar-link dashboard-sidebar-link--muted">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to site
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="dashboard-main">
+      <div class="dashboard-content">
+
+        <!-- Page header -->
+        <header class="dashboard-page-header">
+          <div>
+            <h1 class="dashboard-title">Welcome back, John</h1>
+            <p class="dashboard-subtitle">Here’s what’s happening with your game servers.</p>
+          </div>
+          <a href="#" class="btn btn-primary">
+            Create Server
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+        </header>
+
+        <!-- Stats row -->
+        <section class="dashboard-stats">
+          <div class="dashboard-stat-card">
+            <div class="dashboard-stat-icon dashboard-stat-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg>
+            </div>
+            <div class="dashboard-stat-content">
+              <span class="dashboard-stat-value">3</span>
+              <span class="dashboard-stat-label">Active Servers</span>
+            </div>
+          </div>
+          <div class="dashboard-stat-card">
+            <div class="dashboard-stat-icon dashboard-stat-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+            </div>
+            <div class="dashboard-stat-content">
+              <span class="dashboard-stat-value">18 GB</span>
+              <span class="dashboard-stat-label">Total RAM</span>
+            </div>
+          </div>
+          <div class="dashboard-stat-card">
+            <div class="dashboard-stat-icon dashboard-stat-icon--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div class="dashboard-stat-content">
+              <span class="dashboard-stat-value">$28</span>
+              <span class="dashboard-stat-label">This month</span>
+            </div>
+          </div>
+          <div class="dashboard-stat-card">
+            <div class="dashboard-stat-icon dashboard-stat-icon--teal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="dashboard-stat-content">
+              <span class="dashboard-stat-value">99.98%</span>
+              <span class="dashboard-stat-label">Uptime</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Servers section -->
+        <section class="dashboard-section">
+          <div class="dashboard-section-header">
+            <h2 class="dashboard-section-title">Your Servers</h2>
+            <a href="servers.html" class="dashboard-section-link">View all</a>
+          </div>
+
+          <div class="dashboard-table-wrap">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Server</th>
+                  <th>Game</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                  <th>Players</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="dashboard-table-server">
+                      <a href="server-detail.html" class="dashboard-table-name">Survival SMP</a>
+                      <span class="dashboard-table-ip">mc.nexushost.gg</span>
+                    </div>
+                  </td>
+                  <td><span class="dashboard-table-game">Minecraft</span></td>
+                  <td>Frankfurt</td>
+                  <td><span class="dashboard-badge dashboard-badge--success">Online</span></td>
+                  <td>12 / 64</td>
+                  <td>
+                    <div class="dashboard-table-actions">
+                      <a href="#" class="dashboard-btn-icon" title="Console"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg> </a>
+                      <a href="#" class="dashboard-btn-icon" title="Manage"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009.19 18a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 006 9.19a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg> </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="dashboard-table-server">
+                      <a href="server-detail.html" class="dashboard-table-name">Rust Main</a>
+                      <span class="dashboard-table-ip">rust.nexushost.gg</span>
+                    </div>
+                  </td>
+                  <td><span class="dashboard-table-game">Rust</span></td>
+                  <td>Amsterdam</td>
+                  <td><span class="dashboard-badge dashboard-badge--success">Online</span></td>
+                  <td>48 / 100</td>
+                  <td>
+                    <div class="dashboard-table-actions">
+                      <a href="#" class="dashboard-btn-icon" title="Console"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg> </a>
+                      <a href="#" class="dashboard-btn-icon" title="Manage"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009.19 18a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 006 9.19a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg> </a>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="dashboard-table-server">
+                      <a href="server-detail.html" class="dashboard-table-name">Valheim Co-op</a>
+                      <span class="dashboard-table-ip">valheim.nexushost.gg</span>
+                    </div>
+                  </td>
+                  <td><span class="dashboard-table-game">Valheim</span></td>
+                  <td>London</td>
+                  <td><span class="dashboard-badge dashboard-badge--success">Online</span></td>
+                  <td>4 / 10</td>
+                  <td>
+                    <div class="dashboard-table-actions">
+                      <a href="#" class="dashboard-btn-icon" title="Console"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg> </a>
+                      <a href="#" class="dashboard-btn-icon" title="Manage"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009.19 18a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 006 9.19a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg> </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Quick actions / empty state CTA -->
+        <section class="dashboard-section">
+          <div class="dashboard-cta-card">
+            <div class="dashboard-cta-content">
+              <h3>Need more power?</h3>
+              <p>Upgrade your plan for more RAM, CPU, and slots. Or deploy another server in under a minute.</p>
+              <div class="dashboard-cta-actions">
+                <a href="index.html#pricing" class="btn btn-primary">View plans</a>
+                <a href="#" class="btn btn-ghost">Create Server</a>
+              </div>
+            </div>
+            <div class="dashboard-cta-visual">
+              <svg viewBox="0 0 120 120" fill="none" aria-hidden="true">
+                <circle cx="60" cy="60" r="50" stroke="url(#ctaGrad)" stroke-width="2" opacity="0.4"/>
+                <circle cx="60" cy="60" r="35" stroke="url(#ctaGrad)" stroke-width="1.5" opacity="0.6"/>
+                <path d="M60 30v60M30 60h60" stroke="url(#ctaGrad)" stroke-width="1" opacity="0.5"/>
+                <defs>
+                  <linearGradient id="ctaGrad" x1="10" y1="10" x2="110" y2="110" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#00e87b"/>
+                    <stop offset="1" stop-color="#00b4d8"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* ===== MY SERVERS PAGE ===== */
+
+.servers-content .dashboard-section {
+  margin-bottom: 24px;
+}
+
+/* ---- Toolbar: search + filters ---- */
+.servers-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.servers-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
+}
+
+.servers-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.servers-search {
+  width: 100%;
+  padding: 10px 14px 10px 44px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.servers-search::placeholder {
+  color: var(--text-tertiary);
+}
+
+.servers-search:focus {
+  border-color: rgba(0, 232, 123, 0.4);
+  box-shadow: 0 0 0 3px rgba(0, 232, 123, 0.08);
+}
+
+.servers-filters {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.servers-filter {
+  padding: 10px 36px 10px 14px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none' stroke='%239a9aad' stroke-width='2'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color var(--transition);
+}
+
+.servers-filter:hover,
+.servers-filter:focus {
+  border-color: var(--border-hover);
+}
+
+.servers-filter option {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+}
+
+/* Plan label in table */
+.servers-plan {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Result count */
+.servers-count {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+/* Table min-width for horizontal scroll on small screens */
+@media (max-width: 1024px) {
+  .servers-table {
+    min-width: 720px;
+  }
+}
+
+@media (max-width: 768px) {
+  .servers-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .servers-search-wrap {
+    max-width: none;
+  }
+
+  .servers-filters {
+    width: 100%;
+  }
+
+  .servers-filter {
+    flex: 1;
+    min-width: 0;
+  }
+}

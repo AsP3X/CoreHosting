@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survival SMP — NexusHost</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="server-detail.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar dashboard-nav" id="navbar">
+    <div class="nav-inner">
+      <button type="button" class="dashboard-sidebar-toggle" id="sidebarToggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="url(#detailLogoGrad)" />
+            <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="#0f0f13" />
+            <defs>
+              <linearGradient id="detailLogoGrad" x1="4" y1="2" x2="28" y2="30">
+                <stop stop-color="#00e87b" />
+                <stop offset="1" stop-color="#00b4d8" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">NexusHost</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="servers.html" class="nav-link active">My Servers</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+        <a href="index.html#pricing" class="nav-link">Prices</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="dashboard-user" id="userMenu">
+          <button class="dashboard-user-btn" id="userMenuBtn" aria-expanded="false" aria-haspopup="true" aria-label="Account menu">
+            <span class="dashboard-user-avatar">JD</span>
+            <span class="dashboard-user-name">John</span>
+            <svg class="dashboard-user-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dashboard-user-dropdown" id="userDropdown" hidden>
+            <a href="dashboard.html" class="dashboard-user-item">Dashboard</a>
+            <a href="settings.html" class="dashboard-user-item">Account settings</a>
+            <a href="billing.html" class="dashboard-user-item">Billing</a>
+            <hr class="dashboard-user-divider">
+            <a href="auth.html" class="dashboard-user-item dashboard-user-item--danger">Sign out</a>
+          </div>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== LAYOUT ========== -->
+  <div class="dashboard-layout">
+    <div class="dashboard-sidebar-overlay" id="sidebarOverlay" aria-hidden="true" hidden></div>
+    <aside class="dashboard-sidebar" id="sidebar">
+      <nav class="dashboard-sidebar-nav" aria-label="Dashboard navigation">
+        <a href="dashboard.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Overview
+        </a>
+        <a href="servers.html" class="dashboard-sidebar-link dashboard-sidebar-link--active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg>
+          My Servers
+        </a>
+        <a href="billing.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Billing
+        </a>
+        <a href="settings.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009.19 18a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 006 9.19a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+      <div class="dashboard-sidebar-footer">
+        <a href="index.html" class="dashboard-sidebar-link dashboard-sidebar-link--muted">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to site
+        </a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="dashboard-content detail-content">
+
+        <!-- Breadcrumb -->
+        <nav class="detail-breadcrumb" aria-label="Breadcrumb">
+          <a href="servers.html">My Servers</a>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Survival SMP</span>
+        </nav>
+
+        <!-- Page header -->
+        <header class="dashboard-page-header detail-header">
+          <div class="detail-header-info">
+            <div class="detail-header-title-row">
+              <h1 class="dashboard-title">Survival SMP</h1>
+              <span class="dashboard-badge dashboard-badge--success">Online</span>
+            </div>
+            <p class="detail-server-meta">
+              <span>Minecraft · Java</span>
+              <span class="detail-meta-dot">·</span>
+              <span>Frankfurt, DE</span>
+              <span class="detail-meta-dot">·</span>
+              <code class="detail-ip">mc.nexushost.gg:25565</code>
+            </p>
+          </div>
+          <div class="detail-header-actions">
+            <button type="button" class="btn btn-ghost detail-action-btn" id="btnRestart" title="Restart server">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8a6 6 0 116 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 8V4.5M2 8H5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Restart
+            </button>
+            <button type="button" class="btn detail-action-btn detail-btn-stop" id="btnStop" title="Stop server">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" fill="currentColor"/></svg>
+              Stop
+            </button>
+          </div>
+        </header>
+
+        <!-- Quick stat chips -->
+        <div class="detail-chips">
+          <div class="detail-chip">
+            <span class="detail-chip-label">Plan</span>
+            <span class="detail-chip-value">Pro</span>
+          </div>
+          <div class="detail-chip">
+            <span class="detail-chip-label">RAM</span>
+            <span class="detail-chip-value">8 GB</span>
+          </div>
+          <div class="detail-chip">
+            <span class="detail-chip-label">CPU</span>
+            <span class="detail-chip-value">4 vCPU</span>
+          </div>
+          <div class="detail-chip">
+            <span class="detail-chip-label">Storage</span>
+            <span class="detail-chip-value">50 GB NVMe</span>
+          </div>
+          <div class="detail-chip">
+            <span class="detail-chip-label">Players</span>
+            <span class="detail-chip-value" id="chipPlayers">12 / 64</span>
+          </div>
+          <div class="detail-chip">
+            <span class="detail-chip-label">Uptime</span>
+            <span class="detail-chip-value" id="chipUptime">3d 14h 22m</span>
+          </div>
+        </div>
+
+        <!-- ===== PERFORMANCE ===== -->
+        <section class="detail-section">
+          <div class="detail-section-header">
+            <h2 class="dashboard-section-title">Performance</h2>
+            <!-- Timeframe selector -->
+            <div class="detail-timeframe" role="group" aria-label="Select timeframe">
+              <button class="detail-tf-btn" data-tf="1h">1H</button>
+              <button class="detail-tf-btn detail-tf-btn--active" data-tf="6h">6H</button>
+              <button class="detail-tf-btn" data-tf="24h">24H</button>
+              <button class="detail-tf-btn" data-tf="7d">7D</button>
+            </div>
+          </div>
+
+          <!-- Current values -->
+          <div class="detail-metrics">
+            <div class="detail-metric detail-metric--cpu">
+              <div class="detail-metric-header">
+                <span class="detail-metric-name">CPU</span>
+                <span class="detail-metric-value" id="metricCpu">—</span>
+              </div>
+              <div class="detail-metric-bar-wrap">
+                <div class="detail-metric-bar-fill" id="barCpu" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="detail-metric detail-metric--ram">
+              <div class="detail-metric-header">
+                <span class="detail-metric-name">RAM</span>
+                <span class="detail-metric-value" id="metricRam">—</span>
+              </div>
+              <div class="detail-metric-bar-wrap">
+                <div class="detail-metric-bar-fill" id="barRam" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="detail-metric detail-metric--storage">
+              <div class="detail-metric-header">
+                <span class="detail-metric-name">Storage</span>
+                <span class="detail-metric-value" id="metricStorage">—</span>
+              </div>
+              <div class="detail-metric-bar-wrap">
+                <div class="detail-metric-bar-fill" id="barStorage" style="width:0%"></div>
+              </div>
+            </div>
+            <div class="detail-metric detail-metric--players">
+              <div class="detail-metric-header">
+                <span class="detail-metric-name">Players</span>
+                <span class="detail-metric-value" id="metricPlayers">—</span>
+              </div>
+              <div class="detail-metric-bar-wrap">
+                <div class="detail-metric-bar-fill" id="barPlayers" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts grid -->
+          <div class="detail-charts">
+            <div class="detail-chart-card">
+              <div class="detail-chart-title">CPU Usage <span class="detail-chart-unit">%</span></div>
+              <canvas id="chartCpu" class="detail-canvas" aria-label="CPU usage chart"></canvas>
+            </div>
+            <div class="detail-chart-card">
+              <div class="detail-chart-title">RAM Usage <span class="detail-chart-unit">GB</span></div>
+              <canvas id="chartRam" class="detail-canvas" aria-label="RAM usage chart"></canvas>
+            </div>
+            <div class="detail-chart-card">
+              <div class="detail-chart-title">Storage <span class="detail-chart-unit">GB</span></div>
+              <canvas id="chartStorage" class="detail-canvas" aria-label="Storage usage chart"></canvas>
+            </div>
+            <div class="detail-chart-card">
+              <div class="detail-chart-title">Player Count <span class="detail-chart-unit">players</span></div>
+              <canvas id="chartPlayers" class="detail-canvas" aria-label="Player count chart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== CONSOLE ===== -->
+        <section class="detail-section">
+          <div class="detail-section-header">
+            <h2 class="dashboard-section-title">Console</h2>
+            <button type="button" class="detail-clear-btn" id="clearConsole">Clear</button>
+          </div>
+          <div class="detail-console" id="consoleOutput" aria-live="polite" aria-label="Server console output">
+            <p><span class="console-ts">[09:14:01]</span> <span class="console-info">Server started on port 25565</span></p>
+            <p><span class="console-ts">[09:14:03]</span> Done (2.731s)! For help, type "help"</p>
+            <p><span class="console-ts">[09:22:48]</span> <span class="console-join">PlayerOne joined the game</span></p>
+            <p><span class="console-ts">[09:41:12]</span> <span class="console-join">CreeperSlayer99 joined the game</span></p>
+            <p><span class="console-ts">[10:05:33]</span> <span class="console-warn">[WARN] Can't keep up! Did the system time change, or is the server overloaded?</span></p>
+            <p><span class="console-ts">[10:06:01]</span> <span class="console-join">BuildMaster joined the game</span></p>
+            <p><span class="console-ts">[10:18:44]</span> <span class="console-leave">CreeperSlayer99 left the game</span></p>
+            <p><span class="console-ts">[10:44:09]</span> Saving the world...</p>
+            <p><span class="console-ts">[10:44:11]</span> Saved the game</p>
+            <p><span class="console-ts">[11:01:22]</span> <span class="console-join">NightOwl42 joined the game</span></p>
+            <p id="consoleLive"></p>
+          </div>
+          <form class="detail-console-input-row" id="consoleForm" autocomplete="off">
+            <span class="detail-console-prompt">&gt;</span>
+            <input type="text" id="consoleInput" class="detail-console-input" placeholder="Type a command…" aria-label="Console command input">
+            <button type="submit" class="btn btn-primary detail-console-send">Send</button>
+          </form>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="dashboard.js"></script>
+  <script src="server-detail.js"></script>
+</body>
+</html>

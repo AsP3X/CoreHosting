@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing — NexusHost</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="billing.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar dashboard-nav" id="navbar">
+    <div class="nav-inner">
+      <button type="button" class="dashboard-sidebar-toggle" id="sidebarToggle" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="url(#billingLogoGrad)" />
+            <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="#0f0f13" />
+            <defs>
+              <linearGradient id="billingLogoGrad" x1="4" y1="2" x2="28" y2="30">
+                <stop stop-color="#00e87b" />
+                <stop offset="1" stop-color="#00b4d8" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">NexusHost</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="servers.html" class="nav-link">My Servers</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+        <a href="index.html#pricing" class="nav-link">Prices</a>
+      </div>
+
+      <div class="nav-actions">
+        <div class="dashboard-user" id="userMenu">
+          <button class="dashboard-user-btn" id="userMenuBtn" aria-expanded="false" aria-haspopup="true" aria-label="Account menu">
+            <span class="dashboard-user-avatar">JD</span>
+            <span class="dashboard-user-name">John</span>
+            <svg class="dashboard-user-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dashboard-user-dropdown" id="userDropdown" hidden>
+            <a href="dashboard.html" class="dashboard-user-item">Dashboard</a>
+            <a href="settings.html" class="dashboard-user-item">Account settings</a>
+            <a href="billing.html" class="dashboard-user-item">Billing</a>
+            <hr class="dashboard-user-divider">
+            <a href="auth.html" class="dashboard-user-item dashboard-user-item--danger">Sign out</a>
+          </div>
+        </div>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== LAYOUT: SIDEBAR + MAIN ========== -->
+  <div class="dashboard-layout">
+    <div class="dashboard-sidebar-overlay" id="sidebarOverlay" aria-hidden="true" hidden></div>
+    <aside class="dashboard-sidebar" id="sidebar">
+      <nav class="dashboard-sidebar-nav" aria-label="Dashboard navigation">
+        <a href="dashboard.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+          Overview
+        </a>
+        <a href="servers.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 10l3 2-3 2M13 16h3"/></svg>
+          My Servers
+        </a>
+        <a href="billing.html" class="dashboard-sidebar-link dashboard-sidebar-link--active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          Billing
+        </a>
+        <a href="settings.html" class="dashboard-sidebar-link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009.19 18a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 006 9.19a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          Settings
+        </a>
+      </nav>
+      <div class="dashboard-sidebar-footer">
+        <a href="index.html" class="dashboard-sidebar-link dashboard-sidebar-link--muted">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back to site
+        </a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="dashboard-content billing-content">
+
+        <header class="dashboard-page-header">
+          <div>
+            <h1 class="dashboard-title">Billing</h1>
+            <p class="dashboard-subtitle">Manage your plan, payment method, and view invoices.</p>
+          </div>
+        </header>
+
+        <!-- Current plan + Payment method row -->
+        <div class="billing-cards">
+          <section class="billing-card">
+            <div class="billing-card-header">
+              <h2 class="billing-card-title">Current plan</h2>
+              <a href="index.html#pricing" class="billing-card-link">Change plan</a>
+            </div>
+            <div class="billing-plan">
+              <div class="billing-plan-name">Pro</div>
+              <p class="billing-plan-desc">For growing communities — 8 GB RAM, 4 vCPU, 50 GB storage</p>
+              <div class="billing-plan-price">
+                <span class="billing-plan-amount">$12</span>
+                <span class="billing-plan-period">/ month</span>
+              </div>
+              <p class="billing-plan-date">Next billing date: <strong>April 9, 2026</strong></p>
+            </div>
+          </section>
+
+          <section class="billing-card">
+            <div class="billing-card-header">
+              <h2 class="billing-card-title">Payment method</h2>
+              <button type="button" class="billing-card-btn">Update</button>
+            </div>
+            <div class="billing-payment">
+              <div class="billing-payment-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+              </div>
+              <div class="billing-payment-details">
+                <span class="billing-payment-brand">Visa</span>
+                <span class="billing-payment-number">•••• •••• •••• 4242</span>
+                <span class="billing-payment-exp">Expires 08/27</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Billing overview -->
+        <section class="dashboard-section billing-section">
+          <div class="dashboard-section-header">
+            <h2 class="dashboard-section-title">Billing overview</h2>
+          </div>
+          <div class="billing-overview-grid">
+            <div class="billing-overview-item">
+              <span class="billing-overview-label">This month</span>
+              <span class="billing-overview-value">$28.00</span>
+              <span class="billing-overview-hint">3 servers · Pro + Pro + Starter</span>
+            </div>
+            <div class="billing-overview-item">
+              <span class="billing-overview-label">Next invoice (est.)</span>
+              <span class="billing-overview-value">$28.00</span>
+              <span class="billing-overview-hint">April 9, 2026</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Invoices -->
+        <section class="dashboard-section">
+          <div class="dashboard-section-header">
+            <h2 class="dashboard-section-title">Invoices</h2>
+          </div>
+          <div class="dashboard-table-wrap">
+            <table class="dashboard-table billing-invoices-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mar 9, 2026</td>
+                  <td>Pro × 2, Starter × 1</td>
+                  <td>$28.00</td>
+                  <td><span class="dashboard-badge dashboard-badge--success">Paid</span></td>
+                  <td><a href="#" class="billing-download">Download</a></td>
+                </tr>
+                <tr>
+                  <td>Feb 9, 2026</td>
+                  <td>Pro × 2, Starter × 1</td>
+                  <td>$28.00</td>
+                  <td><span class="dashboard-badge dashboard-badge--success">Paid</span></td>
+                  <td><a href="#" class="billing-download">Download</a></td>
+                </tr>
+                <tr>
+                  <td>Jan 9, 2026</td>
+                  <td>Pro × 2, Starter × 1</td>
+                  <td>$28.00</td>
+                  <td><span class="dashboard-badge dashboard-badge--success">Paid</span></td>
+                  <td><a href="#" class="billing-download">Download</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
