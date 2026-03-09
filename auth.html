@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NexusHost — Sign In / Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="auth-body">
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="url(#logoGrad)" />
+            <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="#0f0f13" />
+            <defs>
+              <linearGradient id="logoGrad" x1="4" y1="2" x2="28" y2="30">
+                <stop stop-color="#00e87b" />
+                <stop offset="1" stop-color="#00b4d8" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">NexusHost</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="index.html#games" class="nav-link">Games</a>
+        <a href="index.html#pricing" class="nav-link">Prices</a>
+        <a href="index.html#about" class="nav-link">About</a>
+      </div>
+
+      <div class="nav-actions">
+        <a href="auth.html" class="btn btn-signup">Sign Up</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== AUTH BACKGROUND ========== -->
+  <div class="auth-bg">
+    <div class="hero-glow hero-glow--1"></div>
+    <div class="hero-glow hero-glow--2"></div>
+    <div class="hero-grid"></div>
+  </div>
+
+  <!-- ========== AUTH MAIN ========== -->
+  <main class="auth-main">
+    <div class="auth-card" id="authCard">
+
+      <!-- Logo mark -->
+      <div class="auth-logo-mark">
+        <svg viewBox="0 0 32 32" fill="none">
+          <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="url(#authLogoGrad)" />
+          <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="#0f0f13" />
+          <defs>
+            <linearGradient id="authLogoGrad" x1="4" y1="2" x2="28" y2="30">
+              <stop stop-color="#00e87b" />
+              <stop offset="1" stop-color="#00b4d8" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- Tab switcher -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab auth-tab--active" id="tabLogin" role="tab" aria-selected="true" aria-controls="panelLogin" data-tab="login">
+          Sign In
+        </button>
+        <button class="auth-tab" id="tabSignup" role="tab" aria-selected="false" aria-controls="panelSignup" data-tab="signup">
+          Create Account
+        </button>
+        <div class="auth-tab-indicator" id="tabIndicator"></div>
+      </div>
+
+      <!-- ===== LOGIN PANEL ===== -->
+      <div class="auth-panel" id="panelLogin" role="tabpanel" aria-labelledby="tabLogin">
+        <div class="auth-panel-header">
+          <h1>Welcome back</h1>
+          <p>Sign in to manage your game servers.</p>
+        </div>
+
+        <form class="auth-form" id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="loginEmail" class="form-label">Email address</label>
+            <div class="form-input-wrap">
+              <span class="form-input-icon">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M2.5 6.5l7.5 5 7.5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="2" y="4" width="16" height="12" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <input
+                type="email"
+                id="loginEmail"
+                name="email"
+                class="form-input"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              >
+            </div>
+            <span class="form-error" id="loginEmailErr"></span>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label-row">
+              <label for="loginPassword" class="form-label">Password</label>
+              <a href="#" class="form-link">Forgot password?</a>
+            </div>
+            <div class="form-input-wrap">
+              <span class="form-input-icon">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="4" y="9" width="12" height="9" rx="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M7 9V6a3 3 0 016 0v3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                class="form-input"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              >
+              <button type="button" class="form-toggle-pw" aria-label="Toggle password visibility" data-target="loginPassword">
+                <svg class="eye-show" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="2.5"/></svg>
+                <svg class="eye-hide" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M3 3l14 14M10 5c4.5 0 7.5 5 7.5 5a13.8 13.8 0 01-2.5 3M6.5 6.5A13.8 13.8 0 002.5 10s3 5 7.5 5a8 8 0 003-.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <span class="form-error" id="loginPasswordErr"></span>
+          </div>
+
+          <div class="form-check">
+            <label class="check-label">
+              <input type="checkbox" name="remember" class="check-input">
+              <span class="check-box"></span>
+              Keep me signed in
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block auth-submit">
+            Sign In
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>or continue with</span></div>
+
+        <div class="auth-socials">
+          <button class="auth-social-btn" aria-label="Sign in with Discord">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.8 19.8 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.6 12.6 0 00-.617-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.227-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.1.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.03z"/></svg>
+            Discord
+          </button>
+          <button class="auth-social-btn" aria-label="Sign in with GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </button>
+        </div>
+
+        <p class="auth-switch">
+          Don't have an account?
+          <button type="button" class="auth-switch-btn" data-goto="signup">Create one free</button>
+        </p>
+      </div>
+
+      <!-- ===== SIGNUP PANEL ===== -->
+      <div class="auth-panel auth-panel--hidden" id="panelSignup" role="tabpanel" aria-labelledby="tabSignup">
+        <div class="auth-panel-header">
+          <h1>Get started free</h1>
+          <p>Your first 24 hours are on us — no card required.</p>
+        </div>
+
+        <form class="auth-form" id="signupForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="signupFirst" class="form-label">First name</label>
+              <div class="form-input-wrap">
+                <span class="form-input-icon">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 18c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <input type="text" id="signupFirst" name="first_name" class="form-input" placeholder="Alex" autocomplete="given-name" required>
+              </div>
+              <span class="form-error" id="signupFirstErr"></span>
+            </div>
+            <div class="form-group">
+              <label for="signupLast" class="form-label">Last name</label>
+              <div class="form-input-wrap">
+                <span class="form-input-icon">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 18c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <input type="text" id="signupLast" name="last_name" class="form-input" placeholder="Smith" autocomplete="family-name" required>
+              </div>
+              <span class="form-error" id="signupLastErr"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupEmail" class="form-label">Email address</label>
+            <div class="form-input-wrap">
+              <span class="form-input-icon">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 6.5l7.5 5 7.5-5" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="4" width="16" height="12" rx="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <input type="email" id="signupEmail" name="email" class="form-input" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <span class="form-error" id="signupEmailErr"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="signupPassword" class="form-label">Password</label>
+            <div class="form-input-wrap">
+              <span class="form-input-icon">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="9" width="12" height="9" rx="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 9V6a3 3 0 016 0v3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <input type="password" id="signupPassword" name="password" class="form-input" placeholder="Min. 8 characters" autocomplete="new-password" required>
+              <button type="button" class="form-toggle-pw" aria-label="Toggle password visibility" data-target="signupPassword">
+                <svg class="eye-show" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="2.5"/></svg>
+                <svg class="eye-hide" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M3 3l14 14M10 5c4.5 0 7.5 5 7.5 5a13.8 13.8 0 01-2.5 3M6.5 6.5A13.8 13.8 0 002.5 10s3 5 7.5 5a8 8 0 003-.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="pw-strength" id="pwStrength" aria-label="Password strength">
+              <div class="pw-strength-bar"><div class="pw-strength-fill" id="pwFill"></div></div>
+              <span class="pw-strength-label" id="pwLabel">Enter a password</span>
+            </div>
+            <span class="form-error" id="signupPasswordErr"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="signupConfirm" class="form-label">Confirm password</label>
+            <div class="form-input-wrap">
+              <span class="form-input-icon">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10l4 4 8-8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <input type="password" id="signupConfirm" name="confirm_password" class="form-input" placeholder="Repeat password" autocomplete="new-password" required>
+              <button type="button" class="form-toggle-pw" aria-label="Toggle confirm password visibility" data-target="signupConfirm">
+                <svg class="eye-show" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10s3.5-7 9-7 9 7 9 7-3.5 7-9 7-9-7-9-7z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="10" r="2.5"/></svg>
+                <svg class="eye-hide" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none"><path d="M3 3l14 14M10 5c4.5 0 7.5 5 7.5 5a13.8 13.8 0 01-2.5 3M6.5 6.5A13.8 13.8 0 002.5 10s3 5 7.5 5a8 8 0 003-.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <span class="form-error" id="signupConfirmErr"></span>
+          </div>
+
+          <div class="form-check">
+            <label class="check-label">
+              <input type="checkbox" name="terms" id="termsCheck" class="check-input" required>
+              <span class="check-box"></span>
+              I agree to the <a href="#" class="form-link">Terms of Service</a> and <a href="#" class="form-link">Privacy Policy</a>
+            </label>
+            <span class="form-error" id="termsErr"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block auth-submit">
+            Create Account
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>or sign up with</span></div>
+
+        <div class="auth-socials">
+          <button class="auth-social-btn" aria-label="Sign up with Discord">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.8 19.8 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.6 12.6 0 00-.617-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.227-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.1.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.03z"/></svg>
+            Discord
+          </button>
+          <button class="auth-social-btn" aria-label="Sign up with GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </button>
+        </div>
+
+        <p class="auth-switch">
+          Already have an account?
+          <button type="button" class="auth-switch-btn" data-goto="login">Sign in instead</button>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Ambient trust badges -->
+    <div class="auth-trust">
+      <span>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 1L14 4.5V9C14 12.3 11.3 15 8 15C4.7 15 2 12.3 2 9V4.5L8 1Z" stroke="#00e87b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        SSL encrypted
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#00e87b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        No credit card required
+      </span>
+      <span>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#00e87b" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="#00e87b" stroke-width="1.5" stroke-linecap="round"/></svg>
+        24/7 support
+      </span>
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="logo-icon">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path d="M16 2L28 9V23L16 30L4 23V9L16 2Z" fill="url(#footerLogoGrad)" />
+                <path d="M16 8L22 11.5V18.5L16 22L10 18.5V11.5L16 8Z" fill="#0f0f13" />
+                <defs>
+                  <linearGradient id="footerLogoGrad" x1="4" y1="2" x2="28" y2="30">
+                    <stop stop-color="#00e87b" />
+                    <stop offset="1" stop-color="#00b4d8" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <span class="logo-text">NexusHost</span>
+          </a>
+          <p class="footer-tagline">Game server hosting, done right.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="Discord">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.8 19.8 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.6 12.6 0 00-.617-1.25.077.077 0 00-.079-.037A19.74 19.74 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.227-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.009c.12.1.246.198.373.292a.077.077 0 01-.006.127 12.3 12.3 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 00-.031-.03z"/></svg>
+            </a>
+            <a href="#" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#">Game Servers</a>
+          <a href="#">Dedicated Servers</a>
+          <a href="#">VPS Hosting</a>
+          <a href="#">DDoS Protection</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="#">Documentation</a>
+          <a href="#">Knowledge Base</a>
+          <a href="#">Status Page</a>
+          <a href="#">API Reference</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">SLA</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NexusHost. All rights reserved.</p>
+        <p>Made with dedication for the gaming community.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
